@@ -1,0 +1,22 @@
+{
+    "name": "levelab/model/blog-entry",
+    "type": "library",
+    "description": "Domain of Levelab BlogEntries",
+    "keywords": ["levelab", "blog-entries"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Leonid Repin",
+            "email": "leonid-repin@levelab.ru"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "doctrine/common": "~1.2",
+        "levelab/model/core": "~0.1"
+    },
+    "autoload": {
+        "psr-0": { "Levelab\\Model\\BlogEntry": "" }
+    },
+    "target-dir": "Levelab/Model/BlogEntry"
+}
