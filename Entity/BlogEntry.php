@@ -1,10 +1,8 @@
 <?php
 namespace Levelab\Model\BlogEntry\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Levelab\Model\BlogEntry\Values\BlogEntryContent;
 use Levelab\Model\Core\Types\Author;
-use Levelab\Model\Core\Types\Comment;
 use Levelab\Model\Core\Types\Commentable;
 use Levelab\Model\Core\Types\Container;
 use Levelab\Model\BlogEntry\Values\BlogEntryId;
@@ -27,10 +25,6 @@ class BlogEntry implements Content, Commentable {
      * @var BlogEntryContent
      */
     private $content;
-    /**
-     * @var ArrayCollection
-     */
-    private $comments;
 
     /**
      * @param BlogEntryId $id
@@ -43,7 +37,6 @@ class BlogEntry implements Content, Commentable {
         $this->author = $author;
         $this->thematic = $thematic;
         $this->content = $content;
-        $this->comments = new ArrayCollection();
     }
 
     /**
@@ -65,30 +58,6 @@ class BlogEntry implements Content, Commentable {
      */
     public function getThematic() {
         return $this->thematic;
-    }
-
-    /**
-     * @param Comment $comment
-     */
-    public function addComment(Comment $comment) {
-        $this->comments->add($comment);
-    }
-
-    /**
-     * @param Comment $comment
-     * @throws \Exception
-     */
-    public function removeComment(Comment $comment) {
-        $commentFound = $this->comments->filter(function(Content $existingComment) use($comment) {
-            return $existingComment->getId()->compareAgainst($comment->getId());
-        })->first();
-
-        if(!$commentFound) {
-            throw new \Exception;
-        }
-        else {
-            $this->comments->removeElement($commentFound);
-        }
     }
 
     /**
